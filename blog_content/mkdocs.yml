@@ -1,7 +1,4 @@
 site_name: a blog
-docs:
-    deeplearning/dldl/dl1.md
-    deeplearning/dldl/dl2.md
 
 nav:
     - Home: index.md
