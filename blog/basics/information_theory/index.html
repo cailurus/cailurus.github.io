@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>信息论复习 - a blog</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u4fe1\u606f\u8bba\u590d\u4e60";
+    var mkdocs_page_input_path = "basics/information_theory.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> a blog</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">DataScience</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../datascience/ds1/">DS1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../datascience/ds2/">DS2</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">DeepLearning</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../deeplearning/dldl/dl1/">dl1</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../deeplearning/dldl/dl2/">dl2</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">a blog</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>信息论复习</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">信息论复习</h1>
+<h2 id="_2">自信息</h2>
+<p>是对一个事件本身所拥有的信息量多少的衡量，一个事件如果自信息值比较大，那么可以说它所包含的信息量比较大。</p>
+<p>假设信息量用<script type="math/tex">I</script>来表示，对于一个事件A来说，那么它含有的信息量就是<script type="math/tex">I(A)</script>.</p>
+<p>有一些定义：</p>
+<ol>
+<li>
+<p>信息量的大小显然和这个事件发生的概率是有关系的，假如一个事件的发生的概率是100%，那么这个事件显然所含有的信息量就是0。
+    &gt; 告诉我明天太阳会从东边升起，那么显然这句话从信息量的角度来说就是一句废话，它发生的概率是100%，它含有的信息量是0，自信息也是0。</p>
+</li>
+<li>
+<p>假设有两个独立的事件A和B，C是它们的交集，那么分别宣告A和B的信息量等于宣告C的信息量。也就是<script type="math/tex">I(C)=I(A)+I(B)</script>
+    &gt; 告诉我苹果很好吃以及它是红色的这两句话等于先告诉我它很好吃，然后再告诉我它是红色的。</p>
+</li>
+</ol>
+<p>从1来看，既然信息量和概率有关系，那我们不妨假设一个函数<script type="math/tex">f</script>，它的输入是事件发生的概率，例如<script type="math/tex">f(p(w))</script>，输出就是信息量，也就是<script type="math/tex">I(w)=f(p(w))</script>。</p>
+<p>那么从2来看，自然就有了：<script type="math/tex">f(p(w_c))=f(p(w_a))+f(p(w_b))</script>。以及我们还知道C是A和B两个独立事件的交集，所以还有<script type="math/tex">p(w_c)=p(w_a) \cdot p(w_b)</script>，把这个带入前面的公式，就可以得到：</p>
+<p>
+<script type="math/tex; mode=display">f(p(w_a)\cdot p(w_b)) = f(p(w_a)) + f(p(w_b))</script>
+</p>
+<p>这个看起来就是<script type="math/tex">f(x\cdot y)=f(x)+f(y)</script>，于是可以天然地使用对数函数来表示<script type="math/tex">f</script>，所以对于一个事件A来说，它的自信息一般表示就是<script type="math/tex">Klog(p(A))</script>，<script type="math/tex">K</script>是一个常数。由于<script type="math/tex">p(A)</script> 肯定是一个0～1的数字，所以为了让自信息是正数，一般<script type="math/tex">K<0</script>，最常见的就是使用<script type="math/tex">-log(p(w))</script>。</p>
+<p>还有一个地方需要提一下，这里的对数底是未知的，一般来说，如果2为底数，这个计算的单位就是bit，如果是e为底数，单位是nat，10为底数，单位是hart。</p>
+<h2 id="_3">信息熵</h2>
+<p>对于一个变量<script type="math/tex">x</script>来说，可能会有多个不同的取值，假设神经网络最后一层只有一个神经元，我们需要的分类是两类，那么我们可以以0.5为分界线，最近的取值是0或者1。那么显然这种情况下，0是一个事件，1也是一个事件。这两个事件是独立的，那么对应多个事件的<script type="math/tex">x</script>的信息熵就是：<script type="math/tex">H(x)=E[I(x)]</script>，换句话来说，变量的信息熵，等于变量中事件的自信息量的期望。</p>
+<p>那么对于前面的含有两个事件的变量来说，它的信息熵就是：</p>
+<p>
+<script type="math/tex; mode=display">H(x)=(-p(x=0) log(p(x=0)) ) + (-p(x=1)log(p(x=1)))</script>
+</p>
+<p>简单来说，就是各自的概率乘以各自的自信息量，对于这种两个事件的情况，化简一下就是：<script type="math/tex">H(x)=-plog(p)-(1-p)log(1-p)</script>
+</p>
+<p>求导数可以知道<script type="math/tex">p=0.5</script>的时候熵是最大的，如果有多个事件，那么当它们的概率是相等的时候，熵是最大的。</p>
+<blockquote>
+<p>简而言之，0.5的概率表示我们对于这个变量一无所知，那么信息的不确定性就最大。</p>
+</blockquote>
+<h2 id="_4">联合信息熵</h2>
+<p>假设有两个不同的变量<script type="math/tex">x,y</script>，它们各自都会有不同的取值，例如<script type="math/tex">x</script>可能是0或者1，<script type="math/tex">y</script>可能是字符串“a”或者“b”，那么每一组取值就是一个事件，联合信息熵就是所有事件自信息量的期望：</p>
+<p>
+<script type="math/tex; mode=display">H(x,y)=-\sum_x \sum_y p(x,y)log(p(x,y))</script>
+</p>
+<p>联合信息熵是用来评价联合分布的不确定性。</p>
+<p>对<script type="math/tex">x</script> 和 <script type="math/tex">y</script> 可以有一些假设，假如它们是完全无关的，例如<script type="math/tex">x</script>表示的是北京明天会不会下雨，<script type="math/tex">y</script>表示的是我的程序会不会正常工作。那么显然<script type="math/tex">H(x,y)=H(x)+H(y)</script>，因为它们是完全无关的，再反过来说，假如<script type="math/tex">x</script>和<script type="math/tex">y</script>是完全相关，也就是每一个<script type="math/tex">x</script>都能对应到一个<script type="math/tex">y</script>，例如<script type="math/tex">x</script>表示的是明天北京会不会下雨，<script type="math/tex">y</script>表示的是明天路上会不会有雨水。因为它们是完全相关，所以<script type="math/tex">H(x,y)=H(x)=H(y)</script>。</p>
+<p>除此之外的大部分情况都有：<script type="math/tex">H(x,y) \leqslant H(x)+H(y)</script>, <script type="math/tex">H(x,y) \geqslant  H(x)</script>, <script type="math/tex">H(x,y) \geqslant H(y)</script>
+</p>
+<h2 id="_5">条件信息熵</h2>
+<p>是指在给定其中一个变量<script type="math/tex">x</script>的情况下，事件<script type="math/tex">y</script>发生的不确定性：</p>
+<p>
+<script type="math/tex; mode=display">H(y|x) = -\sum_x \sum_y p(x,y) log(p(y|x)) </script>
+</p>
+<p>依据概率公式：</p>
+<p>
+<script type="math/tex; mode=display">H(y|x) = -\sum_x \sum_y p(x,y) log(\frac{p(x,y)}{p(x)}) = -=\sum_x \sum_y p(x,y)(log(p(x,y)) - log(p(x)))</script>
+</p>
+<p>上面的其实就是：<script type="math/tex">H(x,y)-H(x)</script>，条件信息熵就是联合信息熵-先验变量的熵。</p>
+<h2 id="_6">互信息</h2>
+<p>互信息的定义比较特殊，表示的是有两个变量，那么在确定了一个变量的情况下，另一个变量的条件熵相比不确定的情况下，值减少的量。定义是<script type="math/tex">I(x;y)=H(y)-H(y|x)</script>。</p>
+<p>这个值的大小和联合信息熵之间有一些关系。假设<script type="math/tex">x</script>和<script type="math/tex">y</script>之间关系明显，是一一对应的，那么显然<script type="math/tex">H(y|x)</script>就是0，因为知道了<script type="math/tex">x</script>，<script type="math/tex">y</script>的不确定性变成0了，它不具备任何信息。那么<script type="math/tex">I(x;y)=H(y)</script>，就会比较大，也就是<script type="math/tex">x</script>和<script type="math/tex">y</script>之间的互信息非常大。</p>
+<p>反过来如果<script type="math/tex">x</script>和<script type="math/tex">y</script>之间没有关系，那么<script type="math/tex">H(y|x)</script>就和<script type="math/tex">H(y)</script>相等，没有任何贡献，知道不知道<script type="math/tex">x</script>无所谓，那么此时的互信息就是0。</p>
+<p>上面几个量之间的关系：
+<img alt="" src="http://ww1.sinaimg.cn/large/006zmP1Wly1g37ugddw0qj306w04cmx8.jpg" /></p>
+<h2 id="kl-divergence">相对熵（KL Divergence）</h2>
+<p>上面的信息熵其实是一个随机变量的几个事件带来的信息量的大小，或者是条件信息熵那种多个不同的变量之间的关系。</p>
+<p>但是交叉熵是用来衡量一个变量，但是这个变量其实是存在多个不同的分布，需要去衡量两个分布之间的差异性。</p>
+<p>假设这个变量是<script type="math/tex">x</script>，<script type="math/tex">x</script>存在的两个分布分别是<script type="math/tex">p(x)</script>和<script type="math/tex">q(x)</script>。</p>
+<p>KL Divergence的定义是：</p>
+<p>
+<script type="math/tex; mode=display">D_{KL}(p||q)=\sum_i p(x_i)log(\frac{p(x_i)}{q(x_i )})</script>
+</p>
+<p>有几个地方需要注意</p>
+<ul>
+<li>
+<script type="math/tex">log</script>里面是用两个分布的比值来衡量，这是比较合理的，显然当两个分布是一样的时候，整个KL Divergence就是0了。</li>
+<li>但是这个比值外面的期望权重是<script type="math/tex">p(x)</script>的，这一点需要注意。也就是表示KL Divergence的前面那个东西。</li>
+</ul>
+<p>注意到这个期望只是<script type="math/tex">p</script>的概率，那么既然KL Divergence是表述两者之间的距离，那么<script type="math/tex">q</script>为什么不见了。</p>
+<p>其实对应的还有一个：</p>
+<p>
+<script type="math/tex; mode=display">D_{KL}(q||p)=\sum_i p(x_i)log(\frac{q(x_i)}{ p(x_i )})</script>
+</p>
+<p>所以KL散度显然不具备对称性，p到q的距离不等于q到p的距离。因为这里散度的定义其实还有一个概念，就是<strong>确认方向</strong>和<strong>辨识主体</strong>。</p>
+<h2 id="_7">交叉熵</h2>
+<p>继续说交叉熵，他同样是来表示两个分布之间的距离，这个角度上和相对熵的功能是一样的。</p>
+<p>这里可以定义<script type="math/tex">p(x)</script>是真实的分布，可以认为是target的分布，<script type="math/tex">q(x)</script>是模型的预测的分布。</p>
+<p>前面说过对于p的信息熵：</p>
+<p>
+<script type="math/tex; mode=display">H(p) =\sum_x p(x) log(\frac{1}{p(x)})</script>
+</p>
+<p>信息熵的计算的意义一方面是代表p本身所含有的信息量，也是用来表示如果需要表述p的分布，需要多少的存储空间。也就是识别一个样本需要的平均编码长度。</p>
+<p>那么如果用一个假的，错误的分布来表示真实分布的平均编码长度呢？</p>
+<p>
+<script type="math/tex; mode=display">H_{cross}(p,q) = \sum_x p(x) log(\frac{1}{q(x)})</script>
+</p>
+<p>这里的<script type="math/tex">q</script>其实就是一个假的，错误的分布。那么用一个假的分布来表示真实分布的编码的意义是什么呢？换句话说，为什么要用一个假的分布来做这件事。</p>
+<p>不妨从编码信息量的角度来解释：</p>
+<blockquote>
+<p>比如含有4个字母(A,B,C,D)的数据集中，真实分布p=(1/2, 1/2, 0, 0)，即A和B出现的概率均为1/2，C和D出现的概率都为0。计算H(p)为1，即只需要1位编码即可识别A和B。如果使用分布Q=(1/4, 1/4, 1/4, 1/4)来编码则得到H(p,q)=2，即需要2位编码来识别A和B(当然还有C和D，尽管C和D并不会出现，因为真实分布p中C和D出现的概率为0，这里就钦定概率为0的事件不会发生啦)。</p>
+</blockquote>
+<p>上面这个知乎的例子比较容易理解，在真实分布自己的信息熵表示时候，其实表示的是表达自己需要的最少的存储空间，那么当使用错误的分布来进行表示的时候，如果还想把原来的所有可能的信息表达进去，那么就需要更多的存储空间。例如上面的例子中，原来的分布表达的时候就只需要对A和B进行编码就可以了，因为我们已经知道C和D发生的概率是0。但是当使用一个错误的分布的时候，就还需要编码多余的一些C和D进去。这些C和D所占的存储空间从结果的角度来看就是被浪费掉的。</p>
+<p>所以，交叉熵就是用来衡量在给定的真实分布下，使用非真实分布所指定的策略消除系统的不确定性所需要付出成本的大小。</p>
+<p>注意这里面交叉熵也是具备方向性的，也不对称。前面的公式中，p是真实分布，q是虚假的分布。</p>
+<p>所以其实说起来，交叉熵并不是直接用来衡量两个分布之间的差异大小，但是换过来说，如果两个分布之间差异很小，那么自然需要的额外成本就很小，极端情况就是真实分布来表述自己，那显然就等于分布自己信息熵。</p>
+<h2 id="_8">交叉熵和相对熵</h2>
+<p>前面面提到的相对熵的公式可以进行化简计算：</p>
+<p>
+<script type="math/tex; mode=display">D_{KL}(p||q)=\sum_i p(x_i)log(\frac{p(x_i)}{q(x_i )})=H_{cross}(p,q)-H(p)</script>
+</p>
+<p>从这里看的话就非常明显了，KL散度实际上就是如果使用虚假的的分布q来编码原来的真实分布，所需要的额外的存储空间。</p>
+<p>所以其实按理说，我们在机器学习中，如果要去衡量target和模型输出之间的差异，最好的做法是使用KL散度。</p>
+<p>但是这里由于公式中可以看出来，其实交叉熵和相对熵之间差的就是一个真实分布p的信息熵，这个值其实就是target的信息熵，这个值本来也就是一个常量，所以正常的loss用交叉熵也可以达到一样的效果。</p>
+<h2 id="_9">相对熵补充</h2>
+<p>前面提到，如果想衡量两个分布之间的差异，那么相对熵是最正确，最直接的选择。那么前面也提到了相对熵其实是有方向性的，那么究竟如何来选择方向？<script type="math/tex">D_{KL}(p||q)</script>和<script type="math/tex">D_{KL}(q||p)</script>之间有什么区别？</p>
+<p>先说散度求解的目的，其实是找到一个q来模拟真实分布p，让KL散度值最小，于是变成一个优化问题。</p>
+<p>先说正向KL散度，也就是前面定义的：</p>
+<p>
+<script type="math/tex; mode=display">q* = \arg  \min_{q} D_{KL}(p||q) = \arg \min_q \sum_x p(x) log(\frac{p(x)}{q(x)})</script>
+</p>
+<p>这样的优化方程会带来什么样的结果呢？</p>
+<p>显然p是已知的，所以我们希望p大的时候，q也大，p小的时候，就无所谓了，因为那一项本来就小，所以这种优化函数的结果就是q在p比较大的时候，和p比较接近，p比较小的时候，无所谓。</p>
+<p>再来看看反向KL散度，定义是反过来的：</p>
+<p>
+<script type="math/tex; mode=display">q* = \arg \min_q D_{KL}(q||p) = \arg \min_q \sum_x q(x)log(\frac{q(x)}{p(x)})</script>
+</p>
+<p>这里q首先是未知的，在已知p的情况下，如果p比较小，那么我们希望q也跟着小，如果p比较大，那么其实不是太有所谓。</p>
+<p>所以其实可以看出来，如果使用正向的KL散度，那么得到的q分布，其实更加关注真实分布中的大概率事件，反过来如果使用反向KL散度，那么得到的q分布，就更加关注真实分布中的罕见事件。</p>
+<p>补充的一个例子，如果p是两个高斯分布的叠加，有两个峰值，如果q设定是一个单峰的高斯分布，那么求出来的q会是什么样子呢？</p>
+<p><img alt="" src="http://ww1.sinaimg.cn/large/006zmP1Wly1g37yyxhzrcj30zw0hmjww.jpg" /></p>
+<p>选择使用KL散度的哪个方向是取决于实际问题的。它们并没有熟好熟劣的区分。一些应用需要这个近似分布q在真实分布p放置高概率的所有地方都放置高概率，而其他应用需要这个近似分布q在真实分布p放置低概率的所有地方都很少放置高概率。KL散度方向的选择反映了对于每种应用，优先考虑哪一种选择。</p>
+<p>上面左图是最小化𝐷𝐾𝐿(𝑝||𝑞)的效果。在这种情况下，我们选择一个q使得它在p具有高概率的地方具有高概率，意味着在优化过程中，更在意真实分布p中的常见事件，也就是蓝线的两峰，我们要优先确保它们在分布q中不是特别罕见（信息长度不是特别长）。当p具有多个峰时，q选择将这些峰模糊到一起，以便将高概率质量放到所有峰上。</p>
+<p>上面右图是最小化𝐷𝐾𝐿(𝑞||𝑝) 的效果。在这种情况下，我们选择一个q使得它在p具有低概率的地方具有低概率，意味着在优化过程中，更在意真实分布p中的罕见事件，也就是蓝线的谷底，我们要优先确保它们在分布q中不是特别常见（信息长度特别长的那些事件）。当p具有多个峰并且这些峰间隔很宽时，如该图所示，最小化KL散度会选择单个峰，以避免将概率质量放置在p的多个峰之间的低概率区域中。图中是当q被选择成强调左边峰时的结果，我们也可以通过选择右边峰来得到KL散度相同的值。如果这些峰没有被足够强的低概率区域分离，那么KL散度的这个方向仍然可能选择模糊这些峰。</p>
+<p>在二维特征情况下，是这样：</p>
+<p><img alt="" src="http://ww1.sinaimg.cn/large/006zmP1Wly1g37z0esb6rj313i0digsd.jpg" /></p>
+<p>左边，q趋近于完全覆盖p。
+中、右图：𝐷𝐾𝐿(𝑞||𝑝)，q能够锁定某一个峰值。</p>
+<h2 id="js">JS散度</h2>
+<p>由于KL散度的不对称，所以还有一个JS散度，其实是对KL散度做了一个对称操作：</p>
+<p>
+<script type="math/tex; mode=display">D_{JS}(p||q)=\frac{1}{2}D_{KL}(p||\frac{p+q}{2})+\frac{1}{2}D_{KL}(q||\frac{p+q}{2})</script>
+</p>
+<p>ref: https://lumingdong.cn/various-entropies-in-machine-learning.html</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

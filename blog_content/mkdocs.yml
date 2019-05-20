@@ -5,12 +5,8 @@ docs:
 
 nav:
     - Home: index.md
-    - DataScience:
-        - 'DS1': datascience/ds1.md
-        - 'DS2': datascience/ds2.md
-    - DeepLearning:
-        - 'dl1': deeplearning/dldl/dl1.md
-        - 'dl2': deeplearning/dldl/dl2.md
+    - Basics:
+        - '信息论': 'basics/information_theory.md'
     - About: about.md
 
 theme: readthedocs
