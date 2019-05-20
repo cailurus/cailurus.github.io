@@ -1,5 +1,21 @@
 site_name: a blog
+docs:
+    deeplearning/dldl/dl1.md
+    deeplearning/dldl/dl2.md
+
 nav:
     - Home: index.md
+    - DataScience:
+        - 'DS1': datascience/ds1.md
+        - 'DS2': datascience/ds2.md
+    - DeepLearning:
+        - 'dl1': deeplearning/dldl/dl1.md
+        - 'dl2': deeplearning/dldl/dl2.md
     - About: about.md
+
 theme: readthedocs
+extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+markdown_extensions:
+    - mdx_math:
+        enable_dollar_delimiter: True
