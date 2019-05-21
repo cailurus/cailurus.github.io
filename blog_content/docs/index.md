@@ -51,6 +51,11 @@ inline math: $I(w)=-log(w)$
 | Content Cell | Content Cell  | Content Cell |
 | Content Cell | Content Cell  | Content Cell |
 
+* 乐谱
+
+
+![](https://guokr.online/blog/test_chorus-1.svg)
+
 ----
 
 ```yml
