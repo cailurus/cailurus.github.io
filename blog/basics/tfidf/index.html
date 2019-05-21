@@ -1,0 +1,70 @@
+<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../../assets/images/favicon.png"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.0"><title>TF-IDF - 啊又一个博客</title><link rel="stylesheet" href="../../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#009688"><script src="../../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,400,400i,700|Ubuntu+Mono&display=swap"><style>body,input{font-family:"Noto Serif SC","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../../assets/fonts/material-icons.css"></head><body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal"><svg class="md-svg"><defs></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><header class="md-header" data-md-component="header"><nav class="md-header-nav md-grid"><div class="md-flex"><div class="md-flex__cell md-flex__cell--shrink"><a href="../.." title="啊又一个博客" class="md-header-nav__button md-logo"><i class="md-icon">local_cafe</i></a></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label></div><div class="md-flex__cell md-flex__cell--stretch"><div class="md-flex__ellipsis md-header-nav__title" data-md-component="title"><span class="md-header-nav__topic">啊又一个博客</span><span class="md-header-nav__topic">TF-IDF</span></div></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--search md-header-nav__button" for="__search"></label><div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Type to start searching</div><ol class="md-search-result__list"></ol></div></div></div></div></div></div></div></nav></header><div class="md-container"><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0"><label class="md-nav__title md-nav__title--site" for="__drawer"><a href="../.." title="啊又一个博客" class="md-nav__button md-logo"><i class="md-icon">local_cafe</i></a>啊又一个博客</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../.." title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked><label class="md-nav__link" for="nav-2">Basics</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-2">Basics</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../information_theory/" title="信息论" class="md-nav__link">信息论</a></li><li class="md-nav__item md-nav__item--active"><input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc"><a href="./" title="TF-IDF" class="md-nav__link md-nav__link--active">TF-IDF</a></li></ul></nav></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset"><h1>TF-IDF</h1><p>记录一下常见的搜索召回的方法。</p>
+<p>TF-IDF是一个典型的抽取关键词的应用，例如有一个语料库，语料库中有1000篇文章，现在希望给每篇文章找几个关键词，TF-IDF是一个简单而且效果不错的baseline。</p>
+<p>TF-IDF算法需要算两个东西，TF和IDF，整个TF-IDF其实是TF和IDF的乘积。</p>
+<p>先说说TF。TF是 term frequency，也就是词频。计算TF值的时候需要指定某个词，以及某一篇文章，然后计算词出现的频率就可以了。</p>
+<blockquote>
+<p>我爱吃苹果，苹果爱吃梨</p>
+</blockquote>
+<p>这篇文章中<em>苹果</em>的词频就是2，<em>我</em>的词频就是1。</p>
+<p>再说说IDF，Inverse Document Frequency，逆文档频率。逆文档频率计算稍稍复杂，它计算的需要指定某个词，以及整个语料库才行。</p>
+<p>计算方法是这样：假设整个语料库有1000篇文章，其中有10篇文章中包含了<em>苹果</em>这个词。那么<em>苹果</em>这个词的IDF就是：</p>
+<p>
+<script type="math/tex; mode=display">IDF=log(100/10)</script>
+</p>
+<p>可以看出，对某个词来说，如果语料库中包含这个词的文档越多，那么log里面的值就会从非常慢慢接近1，整个log的值也就从很大慢慢接近0。直观的理解就是既然语料库中，大部分文档都包含这个词，甚至所有文章都有这个词，那么显然这个词就不重要，没有任何识别性。</p>
+<p>简而言之，一个词的IDF值其实代表的是，这个词的稀有程度。</p>
+<p>其实还可以从信息论的角度来解释一下：
+假如现在指定一个事件，我们随便从语料库中找一篇文章，看看这篇文章是否包含<em>苹果</em>，我们将这个事件发生的概率定做<script type="math/tex">p</script>。</p>
+<p>那么p的信息熵其实就是<script type="math/tex">I(p) = -log(p)</script>，如果包含<em>苹果</em>这个词的文章的数量是<script type="math/tex">D_i</script>，整个语料库的文章的数量是<script type="math/tex">D</script>，那么显然有<script type="math/tex">p=\frac{D_i}{D}</script>，再把p放回信息熵的公式，就可以得到：</p>
+<p>
+<script type="math/tex; mode=display">I(p)=log(\frac{D}{D_i})</script>
+</p>
+<p>所以<em>某个词的IDF值</em>其实就是：语料库中随机找一篇文章，文章包含这个词的事件的信息熵。可以想象，如果某个词很常见，语料库中随便找一篇文章，基本都有它。那么当我告诉你，我在刚刚挑的这篇文章中发现这个词这件事，这件事的信息熵就很低。</p>
+<p>说一些设定：</p>
+<ul>
+<li>当前词语是<script type="math/tex">i</script>
+</li>
+<li>当前文章的词的个数是<script type="math/tex">m</script>
+</li>
+<li>当前文章中，词语<script type="math/tex">i</script>出现的次数是<script type="math/tex">n_i</script>
+</li>
+<li>语料库的总文档数量是D</li>
+<li>语料库中包含当前词语<script type="math/tex">i</script>的文档的数量是<script type="math/tex">D_i</script>
+</li>
+</ul>
+<p>所以对于某个词<script type="math/tex">i</script>来说，它对应的TF-IDF计算就是：</p>
+<p>
+<script type="math/tex; mode=display">\frac{n_i}{m}log(\frac{D}{D_i})</script>
+</p>
+<p>下面我们对这个TF-IDF计算公式进行一些变形，数学上它等于下面：</p>
+<p>
+<script type="math/tex; mode=display">\frac{n_i}{m}log(\frac{ \frac{n_i}{m}}{\frac{n_i D_i}{m D}})</script>
+</p>
+<p>这么做有什么意义呢，想要让它有一些意义，需要增加一些假设：</p>
+<ul>
+<li>刚才说：当前文章的词的个数是<script type="math/tex">m</script>，现在我们假设所有文章的词的个数都是<script type="math/tex">m</script>，所有文章都一样长。</li>
+<li>前面设定了对于当前文章，词语<script type="math/tex">i</script>出现的次数是<script type="math/tex">n_i</script>，现在我们增加一个假设，也就是语料库中所有文章，只要出现了词语<script type="math/tex">i</script>，出现的次数都是一样的，全都是<script type="math/tex">n_i</script>。举例来说，如果语料库有100篇文章，其中10篇提到了<em>苹果</em>这个词，那么这10篇文章中出现<em>苹果</em>这个词的次数是一样的，比如都是1次，或者都是3次。</li>
+</ul>
+<p>有了这两个假设，继续看看上面的公式：</p>
+<p>
+<script type="math/tex">\frac{n_i}{m}</script>其实就变成了<script type="math/tex">i</script>这个词如果要是在某个文章中出现了，那么从这个文章中随便挑一个词出来，是<script type="math/tex">i</script>的概率</p>
+<p>那么，<script type="math/tex">\frac{n_i D_i}{m D}</script> 是什么呢，分子<script type="math/tex">n_i D_i</script>表示的是整个语料库中，<script type="math/tex">i</script>这个词出现的次数，因为<script type="math/tex">D_i</script> 是包含<script type="math/tex">i</script>的总的文章数量，上面假设又有次数一样，所以它们相乘就是总次数。接着说分母，<script type="math/tex">m D</script>其实就是整个语料库的词的数量，因为已经假设了所有文章含有的词的数量都是一样的。那么整个分数代表的物理意义就是：从语料库中随便找一个词，它是<script type="math/tex">i</script>的概率。</p>
+<p>再继续说回前面的变形过的公式的IDF部分：</p>
+<p>
+<script type="math/tex; mode=display">log(\frac{ \frac{n_i}{m}}{\frac{n_i D_i}{m D}})</script>
+</p>
+<p>这其实代表的是衡量当前文章中词语<script type="math/tex">i</script>的出现概率和整个语料库中词语<script type="math/tex">i</script>出现的概率的差异比值。</p>
+<p>完整的变形后的公式是：</p>
+<p>
+<script type="math/tex; mode=display">\frac{n_i}{m}log(\frac{ \frac{n_i}{m}}{\frac{n_i D_i}{m D}})</script>
+</p>
+<p>到这一步我们其实就会发现，它长得非常像相对熵的公式，也就是KL散度：</p>
+<p>
+<script type="math/tex; mode=display">D_{KL}(p||q)=\sum_i p(x_i)log(\frac{p(x_i)}{q(x_i )})</script>
+</p>
+<p>到这一步其实就真相大白了：</p>
+<p>某个词的TF-IDF就是这个词在当前文档的出现的分布和它在整个语料库中出现的分布的相对熵。当然其实需要前面提到的许多假设条件。</p>
+<p>那么说回来，相对熵的物理意义其实是衡量两个分布之间的差异性，所以TF-IDF衡量的就是某个词在当前文章和整个语料库中的分布的差异性，差异性越大，就越能体现出这个词在这篇文章中的特殊性，内容指向性越强。</p>
+<p>TF-IDF的初衷也正是在此，衡量词语对文章指向性的参考价值。</p>
+<p>那么这个算法有什么问题呢，我们不妨从TF-IDF刚才往相对熵上靠拢时候提到的假设说起。假设中提到文档的长度差不多一致，以及出现次数也一致。所以如果TF-IDF的时候，如果语料库的文章长短差异性非常大，那么显然就不合适，以及出现的次数差异也很大，可能也不那么合适。</p>
+<p>这两个假设其实是相辅相成的，在一个比较理想的场景，例如会议论文提取关键词，大家论文长度也都差不多，都是比较专业的作者，写法也不会差异太大（狂对切关键词），那么这个场景使用TF-IDF可能就是一个比较有效的办法。如果是长短不一，可能直接套用TF-IDF就会有问题。</p></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href="../information_theory/" title="信息论" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>信息论</span></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div><div class="md-footer-social"><link rel="stylesheet" href="../../assets/fonts/font-awesome.css"> <a href="https://twitter.com/ailurus1991" class="md-footer-social__link fa fa-twitter"></a> </div></div></div></footer></div><script src="../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

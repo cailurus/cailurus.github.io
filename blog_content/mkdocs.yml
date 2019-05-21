@@ -4,6 +4,7 @@ nav:
     - Home: index.md
     - Basics:
         - '信息论': 'basics/information_theory.md'
+        - 'TF-IDF': 'basics/tfidf.md'
 
 theme:
     name: 'material'
