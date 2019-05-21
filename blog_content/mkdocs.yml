@@ -1,14 +1,35 @@
-site_name: a blog
+site_name: 啊又一个博客
 
 nav:
     - Home: index.md
     - Basics:
         - '信息论': 'basics/information_theory.md'
-    - About: about.md
 
-theme: readthedocs
+theme:
+    name: 'material'
+    palette:
+        primary: 'teal'
+        accent: 'teal'
+    font:
+        text: 'Noto Serif SC'
+        code: 'Ubuntu Mono'
+    logo:
+        icon: 'local_cafe'
+
+extra:
+    social:
+        - type: 'twitter'
+          link: 'https://twitter.com/ailurus1991'
+
 extra_javascript: 
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 markdown_extensions:
     - mdx_math:
         enable_dollar_delimiter: True
+    - admonition
+    - codehilite:
+        guess_lang: true
+    - toc:
+        permalink: true
+
+
