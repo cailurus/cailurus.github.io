@@ -53,8 +53,11 @@ inline math: $I(w)=-log(w)$
 
 * 乐谱
 
+乐谱部分现在的处理方案是使用GitHub做图床，也就是目前这个项目的另一个static分支。用的也是一个比较不错的工具PicGo，不过需要注意的是GitHub raw会把svg这样的纯文本分享出去的直链也是搞成纯文本，header给丢掉了，所以需要在链接后面加上`xxx.svg?sanitize=true`。
 
-![](https://guokr.online/blog/test_chorus-1.svg)
+![](https://raw.githubusercontent.com/ailurus1991/ailurus1991.github.io/static/blog_images/test_chorus-1.svg?sanitize=true)
+
+
 
 ----
 
