@@ -116,6 +116,7 @@ inline math: $I(w)=-log(w)$
 ### Misc
 其实这个大礼包里面花里胡哨的插件还真不少，而且启用都非常简单。
 
+checklist，emoji，键盘图标都可以。
 
 * [x] 吃早饭 :beers:
 * [x] 吃午饭 :ice_cream:
@@ -124,6 +125,12 @@ inline math: $I(w)=-log(w)$
 * [ ] 打游戏 :video_game:
 * [ ] 看电影:roll_of_paper:
 * [ ] 睡觉 :night_with_stars:
+
+视频和音频直接把平台的embed粘贴过来就可以了，这里面可以统一把width改成100%，看起来和谐一点。不过视频的话，就是有一点黑边，无大碍。
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/ZQElzjCsl9o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/576736659&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
 
 
 ----
