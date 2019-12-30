@@ -1,25 +1,18 @@
 # 又找了一个地方写东西
 
-## 关于我
-帝都某小厂的码农，一个普通的中年男子。
-
 ## 关于这里
-按理说这里会写一些和博客相关的东西，但是迫于年纪大了，想来想去这个页面应该只需要记录一下博客的搭建就好了，这样甚至连 About Page 都可以省掉。
 
-站点全部使用mkdocs弄的，以前没注意过这个Python的静态网页生成工具，只晓得Pelican。对Pelican感觉不是特别好，以前（现在也是）团队博客的网页就是用的Pelican，比较丑，theme没有一个能打的。
+第一次用 Mkdocs，以前没注意过这个 Python 的静态网页生成工具。 以前对 Pelican 感觉不是特别好，theme 没有一个能打的。
 
-Mkdocs倒是很简单，几乎不需要什么配置，yml文件里面写一些需要展示的page，然后定义一些插件就好。
-这种定义的方式我觉得还是比较喜欢的，至少比 Sphinx 那种上来一大套 conf.py 要好，东西少，看起来也更干净。
+Mkdocs 倒是很简单，几乎不需要什么配置，yml 文件里面写一些需要展示的 page，以及必要的一些插件。简单明了，比 Sphinx 那种上来一大套 conf.py 要好很多。
 
-普通的markdown特性都可以自带解决，有些特殊的可能需要记录一下。
+普通的 markdown 特性都可以自带解决，有些特殊的可能需要稍微折腾一下。本文就着重记录这些需要记录的细节部分。
 
-### mkdocs本身
+### Mkdocs 本身
 
-本身有两个`mkdocs build/serve`命令，好用倒是挺好用的，尤其是`serve`还可以支持即时生效，自动reload。但是看了一下
-貌似并不能指定需要`build/serve`的目录，必须要去有yml文件的目录下执行才可以。不过好在最终的静态文件输出目录还是可以支持指定的。
-于是我就鸡贼地写了一个简单的Makefile，指定生成的最后静态文件在二级目录。
+MKdocs 自带了 `mkdocs build/serve` 命令，`serve` 还可以支持即时生效，自动reload。 可惜貌似并不能指定 `build/serve` 目录，必须要去有 yml 文件的目录下执行才可以。不过好在最终的静态文件输出目录还是可以支持指定的。于是我就鸡贼地写了一个简单的Makefile，指定生成的最后静态文件在二级目录。
 
-配置文件也比较简单，如果需要在侧边的目录显示，那么需要配置nav选项，填上对应的pzge名字，以及对应的 相对路径。
+配置文件也比较简单，如果需要在侧边的目录显示，那么需要配置nav选项，填上对应的pzge名字，以及对应的相对路径。
 
 如果不需要，那么可以直接在docs里面写上路径就行了，访问的时候可以直接路径访问。
 
@@ -34,14 +27,14 @@ Mkdocs倒是很简单，几乎不需要什么配置，yml文件里面写一些�
 
 ### 乐谱
 
-乐谱部分现在的处理方案是使用GitHub做图床，也就是目前这个项目的另一个static分支。用的也是一个比较不错的工具PicGo，不过需要注意的是GitHub raw会把svg这样的纯文本分享出去的直链也是搞成纯文本，header给丢掉了，所以需要在链接后面加上`xxx.svg?sanitize=true`。
+乐谱部分现在的处理方案是使用 GitHub 做图床，也就是目前这个项目的另一个 static 分支。用的也是一个比较不错的工具 PicGo，不过需要注意的是 GitHub raw 会把 svg 这样的纯文本分享出去的直链也是搞成纯文本，header 给丢掉了，所以需要在链接后面加上`xxx.svg?sanitize=true`。
 
 ![](https://raw.githubusercontent.com/ailurus1991/ailurus1991.github.io/static/blog_images/test_chorus-1.svg?sanitize=true)
 
 ## 部分功能的插件测试
 
 ### 小标记
-小标记用的是Admonition这个插件，是py markdown包里面自带的。
+小标记用的是 Admonition 这个插件，是py markdown包里面自带的。
 
 ??? bug "我是一个bug嘿嘿嘿"
     啊被你发现了
@@ -66,7 +59,7 @@ Mkdocs倒是很简单，几乎不需要什么配置，yml文件里面写一些�
     ddd
     
 ### 代码高亮
-代码高亮用的是pygments，语法和markdown里面插入代码是一样的。
+代码高亮用的是 pygments，语法和原生 markdown 中插入代码保持一致。
 ```python 
 import pandas as pd
 
@@ -99,15 +92,15 @@ int main() {
 ```
 
 ### 小标题链接
-其实是toc功能，直接在toc里面启用permalink就好了，不过我这里还把anchorlink也启用了（为了好看。
+其实是 toc 功能，直接在 toc 里面启用 permalink 就好了，不过我这里还把 anchorlink 也启用了（为了好看。
 
 ### 数学公式
 
-如果是官方的那个主题，公式需要一个插件python-markdown-math，照着[这个方案](https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax)就行。
+如果是官方的那个主题，公式需要一个插件 python-markdown-math，照着[这个方案](https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax)就行。
 
 不过我选择使用懒人解决方案：[PyMdown Extensions](https://facelessuser.github.io/pymdown-extensions/extensions/arithmatex/)！
 
-直接启用arithmatex就行了，不过同样需要一个extra js（毕竟最后渲染大家用的都是MathJax。
+直接启用 arithmatex 就行了，不过同样需要一个 extra js（毕竟最后渲染大家用的都是MathJax。
 
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
 
@@ -126,7 +119,7 @@ checklist，emoji，键盘图标都可以。
 * [ ] 看电影:roll_of_paper:
 * [ ] 睡觉 :night_with_stars:
 
-视频和音频直接把平台的embed粘贴过来就可以了，这里面可以统一把width改成100%，看起来和谐一点。不过视频的话，就是有一点黑边，无大碍。
+视频和音频直接把平台的 embed 粘贴过来就可以了，这里面可以统一把width改成100%，看起来和谐一点。不过视频的话，就是有一点黑边，无大碍。
 
 <iframe width="100%" height="315" src="https://www.youtube.com/embed/ZQElzjCsl9o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -191,4 +184,3 @@ markdown_extensions:
         permalink: true
         anchorlink: true
 ```
-
