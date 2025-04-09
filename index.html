@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title> More Zhou </title>
+    <link href="./static/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <script type="text/javascript" src="assets/dat.gui.min.js"></script>
+    <style>
+        * {
+            user-select: none;
+        }
+
+        html,
+        body {
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        body {
+            margin: 0;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrap {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            color: #fff;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        .main {
+            position: absolute;
+            top: 25%;
+            left: 0;
+            right: 0;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 8em;
+            animation: animate 0.5s linear infinite;
+            margin: 0;
+        }
+
+        footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px;
+        }
+
+        footer a {
+            pointer-events: auto;
+            color: #fff;
+        }
+
+        footer span {
+            font-size: 12px;
+        }
+
+        @keyframes animate {
+
+            0%,
+            100% {
+                text-shadow: -1.5px -1.5px 0 #0ff, 1.5px 1.5px 0 #f00;
+            }
+
+            25% {
+                text-shadow: 1.5px 1.5px 0 #0ff, -1.5px -1.5px 0 #f00;
+            }
+
+            50% {
+                text-shadow: 1.5px -1.5px 0 #0ff, 1.5px -1.5px 0 #f00;
+            }
+
+            75% {
+                text-shadow: -1.5px 1.5px 0 #0ff, -1.5px 1.5px 0 #f00;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            h1 {
+                font-size: 4.5rem;
+            }
+        }
+
+        a {
+            color: #b3b3b3;
+            text-decoration: underline;
+            pointer-events: auto;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        a:visited {
+            color: #999999;
+        }
+
+        footer a {
+            color: #b3b3b3;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+    </style>
+
+    <script>
+        window.ga = function () {};
+    </script>
+</head>
+
+<body>
+    <canvas></canvas>
+    <div class="wrap">
+        <div class="main">
+            <img src="./static/img/avatar_2_small.jpg" height="200" style="border-radius:5px" alt="avatar image">
+            <h1>Hi there :p</h1>
+            <p>This man (a.k.a. 小熊猫) appreciates math, gorgeous algorithms, indie, and love. Well, not quite in that
+                order.</p>
+            <p>During the day, he works for Microsoft <a
+                    href="https://www.microsoft.com/en-us/research/people/jinyzho/">[1]</a>, and at night, he works for
+                himself.</p>
+            <p>
+                <a href="https://blog.xxm.plus">Blog</a> &nbsp; | &nbsp;
+                <a
+                    href="https://www.xiaoyuzhoufm.com/podcast/61d2e4309443e7923d1fa174?s=eyJ1IjogIjYwNjQ2NjQxZTBmNWU3MjNiYjIyY2JlMiJ9">Podcast</a>
+                &nbsp; | &nbsp;
+                <a href="https://twitter.com/cailurus">Twitter</a> &nbsp; | &nbsp;
+                <a href="https://space.bilibili.com/16241326">Bilibili</a> &nbsp; | &nbsp;
+                <a href="https://www.douban.com/photos/album/1653625108/">Sketches</a>
+        </div>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
