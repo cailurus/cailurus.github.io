@@ -1,1 +1,1 @@
-# Blog
+Simple Homepage
