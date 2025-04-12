@@ -17,6 +17,7 @@
         body {
             overflow: hidden;
             background-color: #000;
+            font-family: 'Consolas', 'Monaco', 'Menlo', 'DejaVu Sans Mono', 'Courier New', monospace;
         }
 
         body {
@@ -40,22 +41,41 @@
             color: #fff;
             pointer-events: none;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .main {
-            position: absolute;
-            top: 25%;
-            left: 0;
-            right: 0;
+            width: 100%;
+            max-width: 1000px; 
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .content-wrapper {
+            position: relative;
+            transform: translateY(-5%);
         }
 
         h1 {
             color: #fff;
             text-align: center;
-            font-family: sans-serif;
-            font-size: 8em;
+            font-family: 'Consolas', 'Monaco', 'Menlo', 'DejaVu Sans Mono', 'Courier New', monospace;
+            font-size: 6em;
             animation: animate 0.5s linear infinite;
             margin: 0;
+            margin-bottom: 10px;
+            letter-spacing: -0.03em;
+        }
+
+        p {
+            margin: 8px auto;
+            padding: 0 10px;
+            line-height: 1.5;
+            width: 100%;
+            text-align: center;
         }
 
         footer {
@@ -63,7 +83,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 20px;
+            padding: 10px;
         }
 
         footer a {
@@ -76,7 +96,6 @@
         }
 
         @keyframes animate {
-
             0%,
             100% {
                 text-shadow: -1.5px -1.5px 0 #0ff, 1.5px 1.5px 0 #f00;
@@ -95,9 +114,80 @@
             }
         }
 
+        @media screen and (min-width: 1200px) {
+            h1 {
+                font-size: 7em;
+            }
+            
+            .avatar-img {
+                height: 180px;
+            }
+            
+            p {
+                font-size: 1.1em;
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width: 1600px) {
+            .main {
+                max-width: 1200px;
+            }
+            
+            p {
+                font-size: 1.2em;
+            }
+        }
+
+        @media screen and (max-width: 1199px) and (min-width: 768px) {
+            h1 {
+                font-size: 6em;
+            }
+            
+            .avatar-img {
+                height: 160px;
+            }
+        }
+
         @media screen and (max-width: 767px) {
             h1 {
-                font-size: 4.5rem;
+                font-size: 3.5rem;
+            }
+            
+            .avatar-img {
+                height: 150px;
+            }
+            
+            .content-wrapper {
+                transform: translateY(-2%);
+            }
+            
+            .main {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (orientation: landscape) and (max-height: 600px) {
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 5px;
+            }
+            
+            .avatar-img {
+                height: 120px;
+            }
+            
+            p {
+                margin: 5px 0;
+                font-size: 0.9em;
+            }
+            
+            .links {
+                margin-top: 10px;
+            }
+            
+            .content-wrapper {
+                transform: none;
             }
         }
 
@@ -123,6 +213,20 @@
         footer a:hover {
             color: #ffffff;
         }
+        
+        .links {
+            margin-top: 15px;
+        }
+        
+        .links a {
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+        
+        .links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
     </style>
 
     <script>
@@ -134,20 +238,17 @@
     <canvas></canvas>
     <div class="wrap">
         <div class="main">
-            <img src="./static/img/avatar_2_small.jpg" height="200" style="border-radius:5px" alt="avatar image">
-            <h1>Hi there :p</h1>
-            <p>This man (a.k.a. 小熊猫) appreciates math, gorgeous algorithms, indie, and love. Well, not quite in that
-                order.</p>
-            <p>During the day, he works for Microsoft <a
-                    href="https://www.microsoft.com/en-us/research/people/jinyzho/">[1]</a>, and at night, he works for
-                himself.</p>
-            <p>
-                <a href="https://blog.xxm.plus">Blog</a> &nbsp; | &nbsp;
-                <a
-                    href="https://www.xiaoyuzhoufm.com/podcast/6624c9741ba157eff7e6779a">Podcast - 迟早要玩</a>
-                &nbsp; | &nbsp;
-                <a href="https://twitter.com/cailurus">Twitter</a> &nbsp; | &nbsp;
-                <a href="https://space.bilibili.com/16241326">Bilibili</a>
+            <div class="content-wrapper">
+                <img src="./static/img/avatar_2_small.jpg" class="avatar-img" height="160" style="border-radius:5px" alt="avatar image">
+                <h1>Hi there!</h1>
+                <p>This man (a.k.a. 小熊猫) appreciates math, gorgeous algorithms, indie, and love. Well, not quite in that order.</p>
+                <p>During the day, he works for Microsoft <a href="https://www.microsoft.com/en-us/research/people/jinyzho/"><sup>1</sup></a>, and at night, he works for himself <a href="https://bento.me/xxm"><sup>2</sup></a>.</p>
+                <div class="links">
+                    <a href="https://blog.xxm.plus">Blog</a> |
+                    <a href="https://x.com/xxm459259">X(Twitter)</a> |
+                    <a href="https://bento.me/xxm">Other Links</a>
+                </div>
+            </div>
         </div>
     </div>
     <script src="assets/script.js"></script>
