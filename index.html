@@ -8,6 +8,9 @@
     <title> More Zhou </title>
     <link href="./static/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <script type="text/javascript" src="assets/dat.gui.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+SC:wght@200;300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             user-select: none;
@@ -16,8 +19,8 @@
         html,
         body {
             overflow: hidden;
-            background-color: #000;
-            font-family: 'Consolas', 'Monaco', 'Menlo', 'DejaVu Sans Mono', 'Courier New', monospace;
+            background-color: #f2efe9;
+            font-family: 'Raleway', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif;
         }
 
         body {
@@ -32,24 +35,38 @@
             height: 100%;
         }
 
+        .paper-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .paper-overlay svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
         .wrap {
             position: fixed;
             left: 0;
             right: 0;
             bottom: 0;
             top: 0;
-            color: #fff;
+            color: #3a3632;
             pointer-events: none;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            z-index: 2;
         }
 
         .main {
             width: 100%;
-            max-width: 1000px; 
+            max-width: 1000px;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -59,23 +76,51 @@
             transform: translateY(-5%);
         }
 
+        .avatar-img {
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.7);
+            box-shadow:
+                0 2px 4px rgba(40, 36, 32, 0.35),
+                0 8px 20px rgba(40, 36, 32, 0.25),
+                0 16px 40px rgba(40, 36, 32, 0.15),
+                inset 0 4px 8px rgba(255, 255, 255, 0.5),
+                inset 0 -4px 10px rgba(40, 36, 32, 0.3);
+            outline: 2px solid rgba(40, 36, 32, 0.1);
+            outline-offset: 5px;
+            transition: box-shadow 0.4s, transform 0.4s;
+            background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(0,0,0,0.05));
+        }
+
+        .avatar-img:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 3px 6px rgba(40, 36, 32, 0.35),
+                0 12px 28px rgba(40, 36, 32, 0.28),
+                0 24px 52px rgba(40, 36, 32, 0.18),
+                inset 0 4px 8px rgba(255, 255, 255, 0.5),
+                inset 0 -4px 10px rgba(40, 36, 32, 0.3);
+        }
+
         h1 {
-            color: #fff;
+            color: #3a3632;
             text-align: center;
-            font-family: 'Consolas', 'Monaco', 'Menlo', 'DejaVu Sans Mono', 'Courier New', monospace;
+            font-family: 'Raleway', 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+            font-weight: 200;
             font-size: 6em;
-            animation: animate 0.5s linear infinite;
+            animation: animate 4s ease-in-out infinite;
             margin: 0;
             margin-bottom: 10px;
-            letter-spacing: -0.03em;
+            letter-spacing: 0.08em;
         }
 
         p {
             margin: 8px auto;
             padding: 0 10px;
-            line-height: 1.5;
+            line-height: 1.8;
             width: 100%;
             text-align: center;
+            font-weight: 300;
+            font-size: 1.05em;
         }
 
         footer {
@@ -88,7 +133,7 @@
 
         footer a {
             pointer-events: auto;
-            color: #fff;
+            color: #6b6560;
         }
 
         footer span {
@@ -98,19 +143,19 @@
         @keyframes animate {
             0%,
             100% {
-                text-shadow: -1.5px -1.5px 0 #0ff, 1.5px 1.5px 0 #f00;
+                text-shadow: -1px -1px 0 rgba(143, 170, 140, 0.4), 1px 1px 0 rgba(176, 143, 158, 0.4);
             }
 
             25% {
-                text-shadow: 1.5px 1.5px 0 #0ff, -1.5px -1.5px 0 #f00;
+                text-shadow: 1px 1px 0 rgba(143, 170, 140, 0.4), -1px -1px 0 rgba(176, 143, 158, 0.4);
             }
 
             50% {
-                text-shadow: 1.5px -1.5px 0 #0ff, 1.5px -1.5px 0 #f00;
+                text-shadow: 1px -1px 0 rgba(143, 170, 140, 0.4), 1px -1px 0 rgba(176, 143, 158, 0.4);
             }
 
             75% {
-                text-shadow: -1.5px 1.5px 0 #0ff, -1.5px 1.5px 0 #f00;
+                text-shadow: -1px 1px 0 rgba(143, 170, 140, 0.4), -1px 1px 0 rgba(176, 143, 158, 0.4);
             }
         }
 
@@ -118,11 +163,11 @@
             h1 {
                 font-size: 7em;
             }
-            
+
             .avatar-img {
                 height: 180px;
             }
-            
+
             p {
                 font-size: 1.1em;
                 width: 100%;
@@ -133,7 +178,7 @@
             .main {
                 max-width: 1200px;
             }
-            
+
             p {
                 font-size: 1.2em;
             }
@@ -143,7 +188,7 @@
             h1 {
                 font-size: 6em;
             }
-            
+
             .avatar-img {
                 height: 160px;
             }
@@ -153,15 +198,15 @@
             h1 {
                 font-size: 3.5rem;
             }
-            
+
             .avatar-img {
                 height: 150px;
             }
-            
+
             .content-wrapper {
                 transform: translateY(-2%);
             }
-            
+
             .main {
                 max-width: 100%;
             }
@@ -172,60 +217,69 @@
                 font-size: 3rem;
                 margin-bottom: 5px;
             }
-            
+
             .avatar-img {
                 height: 120px;
             }
-            
+
             p {
                 margin: 5px 0;
                 font-size: 0.9em;
             }
-            
+
             .links {
                 margin-top: 10px;
             }
-            
+
             .content-wrapper {
                 transform: none;
             }
         }
 
         a {
-            color: #b3b3b3;
-            text-decoration: underline;
+            color: #7a6e66;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(122, 110, 102, 0.3);
             pointer-events: auto;
+            transition: color 0.3s, border-color 0.3s;
         }
 
         a:hover {
-            color: #ffffff;
+            color: #3a3632;
+            border-bottom-color: #3a3632;
         }
 
         a:visited {
-            color: #999999;
+            color: #8a7e76;
         }
 
         footer a {
-            color: #b3b3b3;
-            text-decoration: underline;
+            color: #8a7e76;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(138, 126, 118, 0.3);
         }
 
         footer a:hover {
-            color: #ffffff;
+            color: #3a3632;
+            border-bottom-color: #3a3632;
         }
-        
+
         .links {
             margin-top: 15px;
+            font-size: 1.1em;
+            letter-spacing: 0.05em;
         }
-        
+
         .links a {
-            padding: 2px 4px;
+            padding: 2px 6px;
             border-radius: 3px;
-            transition: background-color 0.2s;
+            border-bottom: none;
+            transition: background-color 0.3s, color 0.3s;
         }
-        
+
         .links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(58, 54, 50, 0.08);
+            border-bottom: none;
         }
     </style>
 
@@ -236,10 +290,22 @@
 
 <body>
     <canvas></canvas>
+    <div class="paper-overlay">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <filter id="paper-fine">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="5" stitchTiles="stitch"/>
+            </filter>
+            <filter id="paper-coarse">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="5" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#paper-fine)" opacity="0.32"/>
+            <rect width="100%" height="100%" filter="url(#paper-coarse)" opacity="0.1"/>
+        </svg>
+    </div>
     <div class="wrap">
         <div class="main">
             <div class="content-wrapper">
-                <img src="./static/img/avatar_2_small.jpg" class="avatar-img" height="160" style="border-radius:5px" alt="avatar image">
+                <img src="./static/img/avatar_2_small.jpg" class="avatar-img" height="160" alt="avatar image">
                 <h1>Hi there!</h1>
                 <p>This man (a.k.a. 小熊猫) appreciates math, gorgeous algorithms, indie, and love. Well, not quite in that order.</p>
                 <p>During the day, he works for Microsoft <a href="https://www.microsoft.com/en-us/research/people/jinyzho/"><sup>1</sup></a>, and at night, he works for himself <a href="https://bento.me/xxm"><sup>2</sup></a>.</p>

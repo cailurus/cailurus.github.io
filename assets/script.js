@@ -24,17 +24,17 @@ var config = {
     COLORFUL: true,
     COLOR_UPDATE_SPEED: 10,
     PAUSED: false,
-    BACK_COLOR: { r: 0, g: 0, b: 0 },
+    BACK_COLOR: { r: 242, g: 239, b: 233 },
     TRANSPARENT: false,
-    BLOOM: true,
+    BLOOM: false,
     BLOOM_ITERATIONS: 8,
     BLOOM_RESOLUTION: 256,
-    BLOOM_INTENSITY: 0.8,
-    BLOOM_THRESHOLD: 0.6,
+    BLOOM_INTENSITY: 0.4,
+    BLOOM_THRESHOLD: 0.8,
     BLOOM_SOFT_KNEE: 0.7,
     SUNRAYS: true,
     SUNRAYS_RESOLUTION: 196,
-    SUNRAYS_WEIGHT: 1.0,
+    SUNRAYS_WEIGHT: 0.4,
 }
 
 function pointerPrototype () {
@@ -934,9 +934,9 @@ function splatPointer (pointer) {
 function multipleSplats (amount) {
     for (var i = 0; i < amount; i++) {
         var color = generateColor();
-        color.r *= 10.0;
-        color.g *= 10.0;
-        color.b *= 10.0;
+        color.r *= 8.0;
+        color.g *= 8.0;
+        color.b *= 8.0;
         var x = Math.random();
         var y = Math.random();
         var dx = 1000 * (Math.random() - 0.5);
@@ -1074,10 +1074,10 @@ function correctDeltaY (delta) {
 }
 
 function generateColor () {
-    var c = HSVtoRGB(Math.random(), 1.0, 1.0);
-    c.r *= 0.15;
-    c.g *= 0.15;
-    c.b *= 0.15;
+    var c = HSVtoRGB(Math.random(), 0.55, 0.8);
+    c.r *= 0.28;
+    c.g *= 0.28;
+    c.b *= 0.28;
     return c;
 }
 
