@@ -317,9 +317,10 @@
         var avatar = document.querySelector('.avatar-img');
         var isHovering = false;
 
+        /* ---- Avatar 3D interaction ---- */
         avatar.addEventListener('mouseenter', function () {
             isHovering = true;
-            avatar.style.transition = 'transform 0.12s ease, box-shadow 0.12s ease';
+            avatar.style.transition = 'none';
         });
 
         avatar.addEventListener('mousemove', function (e) {
@@ -348,6 +349,7 @@
                 (sx * 5) + 'px ' + (sy * 5) + 'px 96px rgba(30,26,22,0.05), ' +
                 'inset ' + hx + 'px ' + hy + 'px 16px rgba(255,255,255,0.6), ' +
                 'inset ' + (-hx) + 'px ' + (-hy) + 'px 16px rgba(30,26,22,0.4)';
+
         });
 
         avatar.addEventListener('mouseleave', function () {
